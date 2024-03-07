@@ -1,0 +1,173 @@
+.header {
+    width: 100vw;
+    height: 60vh;
+    position: relative;
+    margin-bottom: 2%;
+}
+.header .bg-hero>img {
+    width: 100vw;
+    height: 60vh;
+    object-fit: cover;
+    
+}
+
+
+.nav {
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100vw;
+    height: 60px;
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0 auto;
+    background-color: transparent;
+}
+
+.nav ul {
+
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+    margin: 0 auto;
+    width: 72%;
+    justify-content: center;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 27px;
+    font-style: normal;
+}
+
+.nav ul li {
+    margin-right: 20px;
+    padding: 8px;
+    /* Resets the margin for the first li */
+
+}
+
+.nav ul li:first-child {
+    margin-left: 0;
+    margin-right: auto;
+    padding: 0px;
+    font-weight: 500;
+    font-size: 14px;
+    /* Resets the margin for the first li */
+}
+
+.wrapper {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    position: absolute;
+    top: 15vh;
+}
+
+.logoimg {    
+    width: 20%;
+    height: 15%;
+}
+
+.logoimg img {
+    object-fit: cover;
+    width: 100%;    
+}
+
+.wrapper h1{
+    color: white;
+    font-weight: 500;
+    font-size: 36px;
+    margin-top: 2%;
+}
+
+.searchcontainer{
+    /* margin-top: 2%; */    
+    /* width: 50%; */
+width: 47vw;
+margin: auto;
+
+}
+
+.searchcontainer .mergeddiv {
+    
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    height: 3.4rem;
+    background: rgb(255, 255, 255);
+    border-radius: 8px;
+    box-shadow: rgba(28, 28, 28, 0.08) 0px 2px 8px;
+    border: 1px solid rgb(232, 232, 232);
+    
+}
+
+.left i:first-child{
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    cursor: inherit;
+}
+
+.left input {
+    padding: 10px;
+    border: none;
+    font-size: 16px;
+    width: 74%;
+    outline: none;
+    
+}
+
+.left {
+    padding: 0px 1rem;
+        width: 30%;
+
+}
+
+.ddown {
+    cursor: pointer;
+    transform: rotate(0deg);
+    transition: transform 0.25s ease-in-out 0s;
+}
+
+.indicate {
+    width: 0rem;
+    height: 1rem;
+    border: 0.05rem solid rgb(207, 207, 207);
+}
+
+.right {
+    padding: 0px 1rem;
+    border-radius: 0.8rem;
+    width: 60%;
+    /* height: 100%; */
+    display: block;
+    position: relative;
+}
+
+.right i:first-child {
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    cursor: inherit;
+}
+
+.right input {
+    display: inline;
+    padding-left: 10px;
+    border: none;
+    font-size: 16px;    
+    width: 93%;
+    outline: none;
+    
+}
