@@ -7,16 +7,20 @@ import ddown from "../../logos/ddown.svg";
 import abc from "../../logos/search.svg";
 import mobsign from "../../logos/mobsign.svg";
 import getappmob from "../../logos/getappmob.svg";
+import gps from "../../logos/gps.svg";
+import TabNav from "./TabNav";
 
 function Header() {
 
-  // For Responsive Mobile View
+  // For Responsive Mobile View and Tablet View
 
   const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 767);
+  // const [isTabletScreen, setIsTabletScreen] = useState(window.innerWidth >= 767 && window.innerWidth < 819);
 
   useEffect(() => {
     const handleResize = () => {
-      setIsSmallScreen(window.innerWidth < 600);
+      setIsSmallScreen(window.innerWidth < 767);
+      // setIsTabletScreen(window.innerWidth >= 767 && window.innerWidth < 1024);
     };
 
     window.addEventListener('resize', handleResize);
@@ -41,6 +45,46 @@ function Header() {
     setShowDropdown(false);
   };
 
+  // For GPS Location
+
+  const [location, setLocation] = useState(null);
+  const [city, setCity] = useState("Ahmedabad");
+
+  const getLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+
+          fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`)
+          .then(response => response.json())
+          .then(data => {
+            setLocation(data.display_name);
+            setCity(data.address.state_district);
+            // console.log(data);
+          })
+          .catch(error => {
+            console.error(error);
+          });
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  } else {
+    console.error('Geolocation is not supported by this browser.');
+  }
+    //       setLocation({ latitude, longitude });
+    //     },
+    //     (error) => {
+    //       console.error(error);
+    //     }
+    //   );
+    // } else {
+    //   console.error('Geolocation is not supported by this browser.');
+    // }
+  };
+
   return (
     <div>
       <div className="header">
@@ -60,6 +104,8 @@ function Header() {
               </span>
             </div>
 
+            // ) : isTabletScreen ? (
+            //   <TabNav/>
           ) : (
 
             <div className="nav">
@@ -92,49 +138,113 @@ function Header() {
               />
             </div>
             <h1>
-              Discover the best food & drinks in <span className="next-line">Ahmedabad</span>
+              Discover the best food & drinks in <span className="next-line">{city.split(' ')[0]}</span>
             </h1>
-            <div className="searchcontainer">
-              <div className="mergeddiv">
-                <div className="left">
+            {
+              isSmallScreen ? (<>
+
+                <div className="mobsearchcontainer">
                   <div>
-                    <i>
-                      <img src={iconsm} alt="location" />
-                    </i>
-                    <input type="text" placeholder="Ahmedabad" value={selectedItem}
-                      onClick={toggleDropdown} />
-                    <i className="ddown">
-                      <img src={ddown} alt="location" />
-                    </i>
-                  </div>
-                  {showDropdown && (
-                    <div>
-                      <ul>
+                    <div className="mobsearchleft">
+                      <div>
+                        <i>
+                          <img src={iconsm} alt="location" />
+                        </i>
+                        <input type="text" placeholder="Ahmedabad" value={location ? location : selectedItem}
+                          onClick={toggleDropdown} />
+                        <i className="ddown">
+                          <img src={ddown} alt="location" />
+                        </i>
+                      </div>
+                      {showDropdown && (
+                        <div className="leftdropdown">
+                          <div className="gpsli" onClick={getLocation}>
+                            <div className="gpstext">
+                              <div className="imggps">
+                                <img src={gps} alt="gpslogo" />
+                              </div>
+                              <p className="gpsredtext">Detect current location</p>
+                            </div>
+                            <p className="gpsredtext gpssectext">Using GPS</p>
+                          </div>
+                          <div className="placeholder">Recent Locations</div>
+                          {/* <ul>
                         <li onClick={() => handleItemClick('Item 1')}>Item 1</li>
                         <li onClick={() => handleItemClick('Item 2')}>Item 2</li>
                         <li onClick={() => handleItemClick('Item 3')}>Item 3</li>
-                      </ul>
+                      </ul> */}
+                        </div>
+                      )}
                     </div>
-                  )}
-                </div>
-                <div className="indicate"></div>
-                <div className="right">
-                  <div>
-                    <i>
-                      <img src={abc} alt="search" />
-                    </i>
-                    <input
-                      type="text"
-                      placeholder="Search for restaurant, cuisine or a dish"
-                    />
+                  </div>
+
+                  <div className="mobsearchright">
+                    <div>
+                      <i>
+                        <img src={abc} alt="search" />
+                      </i>
+                      <input
+                        type="text"
+                        placeholder="Search for restaurant, cuisine or a dish"
+                      />
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
+
+              </>) : (
+
+                <div className="searchcontainer">
+                  <div className="mergeddiv">
+                    <div className="left">
+                      <div>
+                        <i>
+                          <img src={iconsm} alt="location" />
+                        </i>
+                        <input type="text" placeholder="Ahmedabad" value={location ? location : selectedItem}
+                          onClick={toggleDropdown} />
+                        <i className="ddown">
+                          <img src={ddown} alt="location" />
+                        </i>
+                      </div>
+                      {showDropdown && (
+                        <div className="leftdropdown">
+                          <div className="gpsli" onClick={getLocation}>
+                            <div className="gpstext">
+                              <div className="imggps">
+                                <img src={gps} alt="gpslogo" />
+                              </div>
+                              <p className="gpsredtext">Detect current location</p>
+                            </div>
+                            <p className="gpsredtext gpssectext">Using GPS</p>
+                          </div>
+                          <div className="placeholder">Recent Locations</div>
+                          {/* <ul>
+                        <li onClick={() => handleItemClick('Item 1')}>Item 1</li>
+                        <li onClick={() => handleItemClick('Item 2')}>Item 2</li>
+                        <li onClick={() => handleItemClick('Item 3')}>Item 3</li>
+                      </ul> */}
+                        </div>
+                      )}
+                    </div>
+                    <div className="indicate"></div>
+                    <div className="right">
+                      <div>
+                        <i>
+                          <img src={abc} alt="search" />
+                        </i>
+                        <input
+                          type="text"
+                          placeholder="Search for restaurant, cuisine or a dish"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
           </div>
         </div>
       </div>
-    </div>
+    </div >
   );
 }
 

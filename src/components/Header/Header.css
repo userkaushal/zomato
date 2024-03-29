@@ -159,13 +159,87 @@ a {
 .left {
     padding: 0px 1rem;
     width: 30%;
-
 }
+
+/* .left input:focus + .ddown {
+    transform: rotate(180deg);
+} */
+
 
 .ddown {
     cursor: pointer;
-    transform: rotate(0deg);
+    transform: rotate(180deg);
     transition: transform 0.25s ease-in-out 0s;
+}
+
+.leftdropdown {
+    min-height: 206px;
+    transform: translateX(-16px);
+    position: absolute;
+    overflow: auto;
+    background-color: rgb(255, 255, 255);
+    width: 20vw;
+    border-radius: 10px;
+    z-index: 1000;
+    margin-top: 1%;
+    border: 1px solid rgb(207, 207, 207);
+    box-shadow: rgba(28, 28, 28, 0.08) 0px 2px 8px;
+    transition: opacity 0.25s ease 0s, top 0.25s ease 0s;
+}
+
+.gpsli {
+    padding: 1.15rem 1.15rem 1.15rem 0.95rem;
+    cursor: pointer;
+    background: rgb(255, 255, 255);
+    box-shadow: rgb(232, 232, 232)0px -0.5px 0px inset;
+}
+
+.gpsli:hover {
+    background: rgb(248, 248, 248);
+}
+
+.gpstext {
+    display: flex;
+    font-weight: 500;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.imggps {
+    width: 1.5rem;
+}
+
+.imggps>img {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    cursor: inherit;
+}
+
+.gpsredtext {
+    line-height: 1.5;
+    margin: 0px;
+    color: rgb(239, 79, 95);
+    font-size: 1.01rem;
+    font-weight: 400;
+    text-align: left;
+    font-family: Okra, Helvetica, sans-serif;
+}
+
+.gpssectext {
+    line-height: 1.5;
+    margin: 0px 0px 0px 1.6rem;
+    font-size: 0.85rem;
+    color: rgb(156, 156, 156);
+    text-align: left;
+}
+
+.placeholder {
+    padding: 1rem 0.6rem 0rem 0.95rem;
+    font-size: 1.07rem;
+    color: rgb(28, 28, 28);
+    text-align: left;
+    font-weight: 400;
 }
 
 .indicate {
@@ -198,18 +272,25 @@ a {
     width: 93%;
     outline: none;
 
-}    
+}
 
 .nav-mob {
     width: 95%;
-    
+
 }
-.logo-mob img{
-    
+
+.logo-mob img {
+
     border-radius: 50%;
     padding: 5px;
     border: 1px solid silver;
-    
+
+}
+
+.mobsearchcontainer {
+
+    width: calc(100% - 0.4rem);
+    margin: auto;
 }
 
 
@@ -218,13 +299,13 @@ a {
     .nav ul {
         width: 100%;
         margin: 0 2;
-    }    
+    }
 
     .searchcontainer {
         width: 90vw;
         margin: auto;
-    }    
-}    
+    }
+}
 
 
 /* Default styles for all devices */
@@ -233,6 +314,13 @@ a {
 @media only screen and (min-width: 0px) and (max-width: 767px) {
     /* Styles for mobile devices */
 
+    .header {
+        height: 55vh;
+    }
+
+    .header .bg-hero>img {
+        height: 55vh;
+    }
 
     .logoimg {
         width: 40%;
@@ -256,6 +344,78 @@ a {
         font-size: 20px;
     }
 
+
+    .mobsearchleft i:first-child {
+        display: inline-flex;
+        -webkit-box-align: center;
+        align-items: center;
+        cursor: inherit;
+
+    }
+
+    .mobsearchleft input {
+        padding: 10px;
+        border: none;
+        width: 84%;
+        outline: none;
+        font-size: 14px;
+    }
+
+    .mobsearchleft {
+        padding: 0px 1rem;
+        width: 90%;
+        background: rgb(255, 255, 255);
+        border-radius: 0.5rem;
+        /* padding:0px 1.5rem; */
+    }
+
+    .ddown {
+        cursor: pointer;
+        transform: rotate(180deg);
+        transition: transform 0.25s ease-in-out 0s;
+    }
+
+    .leftdropdown {
+        min-height: 150px;
+        transform: translateX(-16px);
+        position: absolute;
+        overflow: auto;
+        background-color: rgb(255, 255, 255);
+        width: 88vw;
+        border-radius: 10px;
+        z-index: 1000;
+        margin-top: 1%;
+        border: 1px solid rgb(207, 207, 207);
+        box-shadow: rgba(28, 28, 28, 0.08) 0px 2px 8px;
+        transition: opacity 0.25s ease 0s, top 0.25s ease 0s;
+    }
+
+    .mobsearchright {
+
+        margin: 2% 0%;
+        padding: 0px 1rem;
+        width: 90%;
+        background: rgb(255, 255, 255);
+        border-radius: 0.5rem;
+    }
+
+    .mobsearchright i:first-child {
+        display: inline-flex;
+        -webkit-box-align: center;
+        align-items: center;
+        cursor: inherit;
+    }
+
+    .mobsearchright input {
+        display: inline;
+        padding-left: 10px;
+        padding: 10px;
+        border: none;
+        font-size: 14px;
+        width: 88%;
+        outline: none;
+    }
+
 }
 
 /* Tablet devices (portrait and landscape) */
@@ -276,6 +436,7 @@ a {
     .logoimg {
         width: 40%;
     }
+
     .wrapper h1 {
         text-align: center;
         color: white;
@@ -294,11 +455,11 @@ a {
         /* width: 50%; */
         width: 95vw;
         margin: auto;
-    
+
     }
-    
+
     .searchcontainer .mergeddiv {
-    
+
         display: flex;
         -webkit-box-align: center;
         align-items: center;
@@ -307,43 +468,43 @@ a {
         border-radius: 8px;
         box-shadow: rgba(28, 28, 28, 0.08) 0px 2px 8px;
         border: 1px solid rgb(232, 232, 232);
-    
+
     }
-    
+
     .left i:first-child {
         display: inline-flex;
         -webkit-box-align: center;
         align-items: center;
         cursor: inherit;
     }
-    
+
     .left input {
         padding: 10px;
         border: none;
         font-size: 14px;
         width: 74%;
         outline: none;
-    
+
     }
-    
+
     .left {
         padding: 0px 1rem;
         width: 30%;
-    
+
     }
-    
+
     .ddown {
         cursor: pointer;
         transform: rotate(0deg);
         transition: transform 0.25s ease-in-out 0s;
     }
-    
+
     .indicate {
         width: 0rem;
         height: 1rem;
         border: 0.05rem solid rgb(207, 207, 207);
     }
-    
+
     .right {
         padding: 0px 1rem;
         border-radius: 0.8rem;
@@ -352,14 +513,14 @@ a {
         display: block;
         position: relative;
     }
-    
+
     .right i:first-child {
         display: inline-flex;
         -webkit-box-align: center;
         align-items: center;
         cursor: inherit;
     }
-    
+
     .right input {
         display: inline;
         padding-left: 10px;
@@ -367,7 +528,7 @@ a {
         font-size: 14px;
         width: 93%;
         outline: none;
-    
+
     }
 }
 
@@ -375,8 +536,8 @@ a {
 @media only screen and (min-width: 1024px) and (max-width:1439px) {
     /* Styles for laptops, desktops, and larger devices */
 
-    
-    
+
+
 }
 
 /* High-resolution devices (e.g., Retina) */
